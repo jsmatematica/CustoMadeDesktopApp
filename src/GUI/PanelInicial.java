@@ -77,6 +77,9 @@ public class PanelInicial extends javax.swing.JFrame {
         Usuario u = us.get(0);
         jLabel3.setText(u.getNombreCompleto());
 
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
