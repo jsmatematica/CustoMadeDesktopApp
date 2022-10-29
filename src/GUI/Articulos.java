@@ -8,6 +8,7 @@ package GUI;
 import BD.Conexion;
 import customade2.Entidades.Articulo;
 import java.util.Iterator;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,23 +22,8 @@ public class Articulos extends javax.swing.JFrame {
      */
     public Articulos() {
         initComponents();
-        Iterator<Articulo> ite = Conexion.getInstance().select("From Articulo", Articulo.class).iterator();
-        DefaultTableModel mdl1 = (DefaultTableModel) jTable1.getModel();
-        while (ite.hasNext()) {
-            Articulo next = ite.next();
-            Object[] algo = new Object[8];
-            algo[0] = next.getId();
-            algo[1] = next.getTipo();
-            algo[2] = next.getColor();
-            algo[3] = next.getTalle();
-            algo[4] = next.getStock();
-            algo[5] = next.getImagenDeFondo();
-            algo[6] = next.getId();
-            algo[7] = next;
-            mdl1.addRow(algo);
-            
-            
-        }
+        Refresh();
+       
     }
 
     /**
@@ -142,6 +128,8 @@ public class Articulos extends javax.swing.JFrame {
         Articulo a = (Articulo) jTable1.getValueAt(jTable1.getSelectedRow(),7);
         a.setStock(Integer.parseInt(jNumStock.getText()));
         Conexion.getInstance().merge(a);
+        Refresh();
+       
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -183,7 +171,26 @@ public class Articulos extends javax.swing.JFrame {
             }
         });
     }
-
+    private void Refresh(){
+     Iterator<Articulo> ite = Conexion.getInstance().select("From Articulo", Articulo.class).iterator();
+        DefaultTableModel mdl1 = (DefaultTableModel) jTable1.getModel();
+        mdl1.setRowCount(0);
+        while (ite.hasNext()) {
+            Articulo next = ite.next();
+            Object[] algo = new Object[8];
+            algo[0] = next.getId();
+            algo[1] = next.getTipo();
+            algo[2] = next.getColor();
+            algo[3] = next.getTalle();
+            algo[4] = next.getStock();
+            algo[5] = next.getImagenDeFondo();
+            algo[6] = next.getId();
+            algo[7] = next;
+            mdl1.addRow(algo);
+            
+            
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
