@@ -6,12 +6,18 @@
 package GUI;
 import BD.Conexion;
 import customade2.Entidades.*;
+import java.awt.Desktop;
+import java.awt.Image;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -42,24 +48,28 @@ public class PanelInicial extends javax.swing.JFrame {
     private void initComponents() {
 
         jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaPedidos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableDetalles = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
+        jBotonDiseños = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableDiseños = new javax.swing.JTable();
-        jBotonDiseños = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableImagen = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabelImage = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
 
         jComboBox1.setModel(new DefaultComboBoxModel(EstadoPedido.values()));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(855, 465));
 
         jTablaPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,6 +125,13 @@ public class PanelInicial extends javax.swing.JFrame {
             }
         });
 
+        jBotonDiseños.setText("Ver Diseños");
+        jBotonDiseños.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBotonDiseñosActionPerformed(evt);
+            }
+        });
+
         jTableDiseños.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -124,13 +141,6 @@ public class PanelInicial extends javax.swing.JFrame {
             }
         ));
         jScrollPane3.setViewportView(jTableDiseños);
-
-        jBotonDiseños.setText("Ver Diseños");
-        jBotonDiseños.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotonDiseñosActionPerformed(evt);
-            }
-        });
 
         jTableImagen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -156,40 +166,45 @@ public class PanelInicial extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3)
-            .addComponent(jScrollPane4)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1196, Short.MAX_VALUE)
+        jButton5.setText("Descargar Imagen");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane1)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton3)
+                                .addGap(6, 6, 6))
+                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton5)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jBotonDiseños, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jButton4)
-                        .addGap(0, 0, Short.MAX_VALUE))))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
@@ -199,21 +214,35 @@ public class PanelInicial extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(158, 158, 158)
-                        .addComponent(jLabelImage, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                        .addGap(47, 47, 47))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBotonDiseños)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                        .addGap(259, 259, 259)
+                        .addComponent(jButton5)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton4)
-                        .addGap(90, 90, 90))))
+                        .addGap(27, 27, 27))))
+        );
+
+        jScrollPane5.setViewportView(jPanel1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
         );
 
         pack();
@@ -288,11 +317,41 @@ public class PanelInicial extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Imagen i = (Imagen) jTableImagen.getValueAt(jTableImagen.getSelectedRow(), 6);
-        byte[] imgFront = i.getImagenProporcionada();    
-       byte[] encodedFront = Base64.getEncoder().encode(imgFront);
-       String imgFrontstr = "data:image/jpeg;base64,"+ (new String(encodedFront));
-       jLabelImage.setText("<html><img src="+imgFrontstr+"\">");
+//        byte[] imgFront = i.getImagenProporcionada();    
+//       byte[] encodedFront = Base64.getEncoder().encode(imgFront);
+//       String imgFrontstr = "data:image/jpeg;base64,"+ (new String(encodedFront));
+        Image aux = new ImageIcon(i.getImagenProporcionada()).getImage();
+        ImageIcon aux1 = new ImageIcon(i.getImagenProporcionada());
+        ImageIcon perfil = new ImageIcon(aux.getScaledInstance(400, 400*(aux1.getIconWidth()/aux1.getIconHeight()), Image.SCALE_DEFAULT)); //formula relacion aspecto
+       jLabelImage.setIcon(perfil);
+//       jLabelImage.setText("<html><img src="+imgFrontstr+"\">");
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    Imagen i = (Imagen) jTableImagen.getValueAt(jTableImagen.getSelectedRow(), 6);
+        FileInputStream fileInputStream = null;
+//		File file = new File("C:\\FileTests\\Cliente-servidor-1.jpg");
+//		byte[] fileArray = new byte[(int) file.length()];
+                
+
+		try {
+			// Con este código se obtienen los bytes del archivo.
+//			fileInputStream = new FileInputStream(file);
+//			fileInputStream.read(fileArray);
+//			fileInputStream.close();
+
+			// Con este código se agregan los bytes al archivo.
+                        String homeUsuario = System.getProperty("user.home");
+			FileOutputStream fileOuputStream = new FileOutputStream(homeUsuario+"\\"+i.getDisenio().getNombre()+".jpg");
+                        fileOuputStream.write(i.getImagenProporcionada());
+			fileOuputStream.close();
+                        JOptionPane.showMessageDialog(this,"Imágen descargada con éxito.");
+                        Desktop.getDesktop().open(new File(homeUsuario+"\\"+i.getDisenio().getNombre()+".jpg"));
+
+		} catch (Exception e) {
+			//Manejar Error
+		}
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,12 +419,15 @@ public class PanelInicial extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabelImage;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTablaPedidos;
     private javax.swing.JTable jTableDetalles;
     private javax.swing.JTable jTableDiseños;
