@@ -65,11 +65,11 @@ public class PanelInicial extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabelImage = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        Volver = new javax.swing.JButton();
 
         jComboBox1.setModel(new DefaultComboBoxModel(EstadoPedido.values()));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(855, 465));
 
         jTablaPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -173,6 +173,13 @@ public class PanelInicial extends javax.swing.JFrame {
             }
         });
 
+        Volver.setText("jButton6");
+        Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -185,7 +192,9 @@ public class PanelInicial extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
+                        .addGap(11, 11, 11)
+                        .addComponent(Volver)
+                        .addGap(65, 65, 65)
                         .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +238,11 @@ public class PanelInicial extends javax.swing.JFrame {
                         .addComponent(jButton5)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)
-                        .addGap(27, 27, 27))))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Volver)
+                        .addContainerGap())))
         );
 
         jScrollPane5.setViewportView(jPanel1);
@@ -353,6 +366,12 @@ public class PanelInicial extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
+        Menu p = new Menu();
+       p.show();
+        dispose();
+    }//GEN-LAST:event_VolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -414,6 +433,7 @@ public class PanelInicial extends javax.swing.JFrame {
         }
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Volver;
     private javax.swing.JButton jBotonDiseños;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
