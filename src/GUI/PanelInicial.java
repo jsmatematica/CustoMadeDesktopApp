@@ -137,7 +137,7 @@ public class PanelInicial extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre Diseño", "Precio Unitario", "Imagen"
+                "Nombre Diseño", "Precio Unitario", "Imagen", "ID Articulo"
             }
         ));
         jScrollPane3.setViewportView(jTableDiseños);
@@ -159,7 +159,7 @@ public class PanelInicial extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Mostra Imagen");
+        jButton4.setText("Mostrar Imagen");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -300,10 +300,11 @@ public class PanelInicial extends javax.swing.JFrame {
         DetalleDePedido p = (DetalleDePedido) jTableDetalles.getValueAt(jTableDetalles.getSelectedRow(),2);
              DefaultTableModel md2 = (DefaultTableModel) jTableDiseños.getModel();
              md2.setRowCount(0);
-             Object[] fila = new Object[3];
+             Object[] fila = new Object[4];
              fila[0] = p.getDisneioDelDetalle().getNombre();
              fila[1] = p.getDisneioDelDetalle().getPrecioUnitario();
              fila[2] = p.getDisneioDelDetalle();
+             fila[3] = p.getDisneioDelDetalle().getArticulo().getId();
                 md2.addRow(fila);
        
                 // TODO add your handling code here:
